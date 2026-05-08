@@ -20,3 +20,9 @@ jobs:
       - name: Upload files to S3
         run: |
           aws s3 sync src s3://${{ secrets.S3_BUCKET }} --delete
+      # Invalidate CloudFront cache
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
