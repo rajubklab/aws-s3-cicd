@@ -19,4 +19,4 @@ jobs:
         run: ls -al
       - name: Upload files to S3
         run: |
-          aws s3 sync index.html s3://${{ secrets.S3_BUCKET }} --delete
+          aws s3 sync src s3://${{ secrets.S3_BUCKET }} --delete
